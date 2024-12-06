@@ -2,14 +2,14 @@ pipeline {
     agent {
         docker {
             image 'maven:3.8.1-adoptopenjdk-11'
-            args '-v /c/Users/Huzyepha/.m2:/root/.m2 -v /c/ProgramData/Jenkins/.jenkins/workspace/simple-java-pipeline:/workspace'
+            args '-v /c/Users/Huzyepha/.m2:/root/.m2 -v /c/ProgramData/Jenkins/.jenkins/workspace/simple-java-pipeline:/workspace -w /workspace'
         }
     }
 
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -f /workspace/pom.xml -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
     }
